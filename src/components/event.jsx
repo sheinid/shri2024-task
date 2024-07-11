@@ -1,4 +1,6 @@
-export function Event({ slim, icon, iconLabel, title, subtitle }) {
+import { memo } from "react";
+
+export const Event = memo(({ slim, icon, iconLabel, title, subtitle }) => {
   return (
     <li className={"event" + (slim ? " event_slim" : "")}>
       <button className="event__button">
@@ -12,4 +14,6 @@ export function Event({ slim, icon, iconLabel, title, subtitle }) {
       </button>
     </li>
   );
-}
+});
+
+Event.displayName = "Event";
