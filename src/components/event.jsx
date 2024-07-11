@@ -1,16 +1,14 @@
-export function Event(props) {
+export function Event({ slim, icon, iconLabel, title, subtitle }) {
   return (
-    <li className={"event" + (props.slim ? " event_slim" : "")}>
+    <li className={"event" + (slim ? " event_slim" : "")}>
       <button className="event__button">
         <span
-          className={`event__icon event__icon_${props.icon}`}
+          className={`event__icon event__icon_${icon}`}
           role="img"
-          aria-label={props.iconLabel}
+          aria-label={iconLabel}
         ></span>
-        <h4 className="event__title">{props.title}</h4>
-        {props.subtitle && (
-          <span className="event__subtitle">{props.subtitle}</span>
-        )}
+        <h4 className="event__title">{title}</h4>
+        {subtitle && <span className="event__subtitle">{subtitle}</span>}
       </button>
     </li>
   );
