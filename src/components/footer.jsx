@@ -1,4 +1,6 @@
-export function Footer() {
+import { memo } from "react";
+
+export const Footer = memo(() => {
   return (
     <footer className="footer">
       <ul className="footer__list">
@@ -27,4 +29,6 @@ export function Footer() {
       <div className="footer__copyright">© 1997–2023 ООО «Яндекс»</div>
     </footer>
   );
-}
+});
+
+Footer.displayName = "Footer";

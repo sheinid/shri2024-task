@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { useState } from "react";
 
-export function Header() {
+export const Header = memo(() => {
   let [expanded, setExpanded] = useState(false);
   let [toggled, setToggled] = useState(false);
 
@@ -53,4 +54,6 @@ export function Header() {
       </ul>
     </header>
   );
-}
+});
+
+Header.displayName = "Header";
