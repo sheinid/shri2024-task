@@ -127,9 +127,9 @@ const TABS = {
     ],
   },
 };
-for (let i = 0; i < 6; ++i) {
-  TABS.all.items = [...TABS.all.items, ...TABS.all.items];
-}
+
+TABS.all.items = Array.from({ length: 7 }, () => [...TABS.all.items]).flat();
+
 const TABS_KEYS = Object.keys(TABS);
 
 export { TABS, TABS_KEYS };
