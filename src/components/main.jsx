@@ -3,7 +3,6 @@ import { TABS, TABS_KEYS } from "../shared/static";
 import { Event } from "./event";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useMemo } from "react";
 
 export function Main() {
   const ref = useRef();
@@ -22,7 +21,7 @@ export function Main() {
     setActiveTab(event.target.value);
   };
 
-  let sizes = useMemo(() => [], []);
+  let sizes = [];
   const onSize = (size) => {
     sizes = [...sizes, size];
   };
