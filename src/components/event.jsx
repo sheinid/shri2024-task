@@ -1,18 +1,7 @@
 import { useRef } from "react";
-import { useEffect } from "react";
 
 export function Event(props) {
   const ref = useRef();
-
-  const { onSize } = props;
-
-  useEffect(() => {
-    const width = ref.current.offsetWidth;
-    const height = ref.current.offsetHeight;
-    if (onSize) {
-      onSize({ width, height });
-    }
-  }, [onSize]);
 
   return (
     <li ref={ref} className={"event" + (props.slim ? " event_slim" : "")}>

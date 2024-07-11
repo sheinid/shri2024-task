@@ -21,19 +21,28 @@ export function Main() {
     setActiveTab(event.target.value);
   };
 
-  let sizes = [];
-  const onSize = (size) => {
-    sizes = [...sizes, size];
-  };
-
   useEffect(() => {
-    const sumWidth = sizes.reduce((acc, item) => acc + item.width, 0);
+    const widths = {
+      all: 102400,
+      kitchen: 478,
+      hall: 400,
+      lights: 813,
+      cameras: 200,
+    };
+    if (ref.current) {
+      const handleResize = () => {
+        setHasRightScroll(widths[activeTab] > ref.current.offsetWidth);
+      };
 
-    const newHasRightScroll = sumWidth > ref.current.offsetWidth;
-    if (newHasRightScroll !== hasRightScroll) {
-      setHasRightScroll(newHasRightScroll);
+      handleResize();
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
     }
-  }, [sizes, hasRightScroll]);
+  }, [activeTab, hasRightScroll]);
 
   const onArrowCLick = () => {
     const scroller = ref.current.querySelector(
@@ -196,7 +205,7 @@ export function Main() {
             >
               <ul className="section__panel-list">
                 {TABS[key].items.map((item, index) => (
-                  <Event key={index} {...item} onSize={onSize} />
+                  <Event key={index} {...item} />
                 ))}
               </ul>
             </div>
