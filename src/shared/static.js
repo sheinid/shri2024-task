@@ -128,7 +128,9 @@ const TABS = {
   },
 };
 
-TABS.all.items = Array.from({ length: 7 }, () => [...TABS.all.items]).flat();
+TABS.all.items = Array(2 ** 6)
+  .fill(TABS.all.items)
+  .flat();
 
 const TABS_KEYS = Object.keys(TABS);
 
