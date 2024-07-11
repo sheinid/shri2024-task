@@ -1,10 +1,6 @@
-import { useRef } from "react";
-
 export function Event(props) {
-  const ref = useRef();
-
   return (
-    <li ref={ref} className={"event" + (props.slim ? " event_slim" : "")}>
+    <li className={"event" + (props.slim ? " event_slim" : "")}>
       <button className="event__button">
         <span
           className={`event__icon event__icon_${props.icon}`}
