@@ -5,6 +5,7 @@ import { useMemo } from "react";
 
 export const DevicesList = memo(({ activeTab }) => {
   const ref = useRef();
+  const scroller = useRef();
   const [hasRightScroll, setHasRightScroll] = useState(false);
 
   useEffect(() => {
@@ -28,18 +29,13 @@ export const DevicesList = memo(({ activeTab }) => {
   }, [activeTab, hasRightScroll]);
 
   const onArrowCLick = () => {
-    const scroller = ref.current.querySelector(
-      ".section__panel:not(.section__panel_hidden)"
-    );
-    if (scroller) {
-      scroller.scrollTo({
-        left: scroller.scrollLeft + 400,
+    if (scroller.current) {
+      scroller.current.scrollTo({
+        left: scroller.current.scrollLeft + 400,
         behavior: "smooth",
       });
     }
   };
-
-  console.log(TABS_KEYS);
 
   return (
     <div className="section__panel-wrapper" ref={ref}>
@@ -49,6 +45,7 @@ export const DevicesList = memo(({ activeTab }) => {
         aria-hidden={"false"}
         id={`panel_${TABS_KEYS[0]}`}
         aria-labelledby={`tab_${TABS_KEYS[0]}`}
+        ref={scroller}
       >
         <ul className="section__panel-list">
           {useMemo(
