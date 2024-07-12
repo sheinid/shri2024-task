@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, memo } from "react";
 import { TABS, TABS_KEYS } from "../shared/static";
 import { Event } from "./event";
+import { useMemo } from "react";
 
 export const DevicesList = memo(({ activeTab }) => {
   const ref = useRef();
@@ -38,27 +39,28 @@ export const DevicesList = memo(({ activeTab }) => {
     }
   };
 
+  console.log(TABS_KEYS);
+
   return (
     <div className="section__panel-wrapper" ref={ref}>
-      {TABS_KEYS.map((key) => (
-        <div
-          key={key}
-          role="tabpanel"
-          className={
-            "section__panel" +
-            (key === activeTab ? "" : " section__panel_hidden")
-          }
-          aria-hidden={key === activeTab ? "false" : "true"}
-          id={`panel_${key}`}
-          aria-labelledby={`tab_${key}`}
-        >
-          <ul className="section__panel-list">
-            {TABS[key].items.map((item, index) => (
-              <Event key={index} {...item} />
-            ))}
-          </ul>
-        </div>
-      ))}
+      <div
+        role="tabpanel"
+        className={"section__panel"}
+        aria-hidden={"false"}
+        id={`panel_${TABS_KEYS[0]}`}
+        aria-labelledby={`tab_${TABS_KEYS[0]}`}
+      >
+        <ul className="section__panel-list">
+          {useMemo(
+            () =>
+              TABS[activeTab].items.map((item, index) => (
+                <Event key={index} {...item} />
+              )),
+            [activeTab]
+          )}
+        </ul>
+      </div>
+
       {hasRightScroll && (
         <div className="section__arrow" onClick={onArrowCLick}></div>
       )}
