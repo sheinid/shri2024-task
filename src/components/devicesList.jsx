@@ -18,11 +18,8 @@ export const DevicesList = memo(({ activeTab }) => {
       const handleResize = () => {
         setHasRightScroll(widths[activeTab] > ref.current.offsetWidth);
       };
-
       handleResize();
-
       window.addEventListener("resize", handleResize);
-
       return () => {
         window.removeEventListener("resize", handleResize);
       };
